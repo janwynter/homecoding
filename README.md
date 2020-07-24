@@ -4,3 +4,4 @@
 
 # Day 1
 Visual Studio Code와 Git / Github을 같이 사용해보기
+Github PAT 사용하기
