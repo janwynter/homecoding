@@ -19,3 +19,11 @@ print("랜덤 숫자[1-45] : ", int(random()*45)+1)
 print("랜덤 숫자[1-45] : ", int(randint(1,45))) # 1~45이하 임의의 값 생성
 print("랜덤 숫자[1-45] : ", int(randrange(1,46))) #1~45미만 임의의 값 생성
 
+# 문자열 
+sentence = "문자열 처리에 대해 알아보기"
+print(sentence)
+section = """
+    다중 문자열을 넣어보기
+    헛 둘 셋 넷
+"""
+print(section)
