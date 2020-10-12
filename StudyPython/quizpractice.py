@@ -90,6 +90,77 @@ print("치킨 당첨자 : {0}".format(winners[0]))
 print("커피 당첨자 : {0}".format(winners[1:]))
 print("-- 축하합니다. --")
 
-'''
+
 
 =================================================================================
+Quiz) 당신은 CoCoa 서비스를 이용하는 택시 기사님입니다. 50명의 승객과 매칭 기회가 있을때 총 탑승 승객수를 구하는 프로그램을 작성해보세요. 
+조건 1: 승객별 운행 소요 시간은 5~50분 사이의 난수로 정해집니다. 
+조건 2: 당신은 소요 시간 5~15분 사이의 승객만 매칭해야 합니다. 
+
+(출력문 예제)
+[0] 1번째 손님 (소요시간 : 15분)
+[] 2번째 손님 (소요시간 : 15분)
+[] 3번째 손님 (소요시간 : 15분)
+[0] 4번째 손님 (소요시간 : 15분)
+
+
+
+from random import *
+
+result=0
+maxtime=15
+mintime=5
+
+for person in range(1,51):
+    time = randint(5,50)
+
+    if 15>= time >=5:
+        print("[0] {0}번째 손님 (소요시간 : {1}분)".format(person,time))
+        result=result+1 #result+=1
+    else: 
+        print("[ ] {0}번째 손님 (소요시간 : {1}분)".format(person,time))
+
+print("총 탑승 승객 : {0}".format(result))
+    
+
+
+
+
+Quiz) 표준 체중을 구하는 프로그램을 작성하시오. 
+* 표준 체중 : 각 개인의 키에 적당한 체중 
+
+(성별에 따른 공식)
+
+남자 : 키(m) X 키(m) X 22
+여자 : 키(m) X 키(m) X 21
+
+조건 1: 표준 체중은 별도의 함수 내에서 계산 
+    * 함수명 : std_weight
+    * 전달 값 : 키(height), 성별(gender)
+조건 2: 표준 체중은 소수점 둘째자리까지 표시 
+
+
+(출력 예재)
+키 175cm 남자의 표준 체중은 67.38kg
+
+'''
+
+def std_weight(height, gender):
+    result = 0
+    if gender == "남자":
+        result = (height/100) * (height/100) * 22
+    elif gender == "여자":
+        result =  (height/100) * (height/100) * 21
+    else:
+        print("잘못 입력하였습니다. 다시 진행해주세요")
+        return
+    return result
+
+
+height = input("키를 입력해주세요 cm로 기입: ")
+gender = input("성별을 입력해주세요 : ")
+std_weight = std_weight(int(height), gender)
+
+
+
+print("키 {0}cm의 {1}의 표준 체중은 {2:.2f}kg".format(height,gender,std_weight))
