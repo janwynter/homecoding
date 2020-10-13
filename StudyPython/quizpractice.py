@@ -143,12 +143,12 @@ Quiz) 표준 체중을 구하는 프로그램을 작성하시오.
 (출력 예재)
 키 175cm 남자의 표준 체중은 67.38kg
 
-'''
+
 
 def std_weight(height, gender):
     result = 0
     if gender == "남자":
-        result = (height/100) * (height/100) * 22
+        result = (height/100) * (height/100) * 22    # height*height*22
     elif gender == "여자":
         result =  (height/100) * (height/100) * 21
     else:
@@ -159,8 +159,30 @@ def std_weight(height, gender):
 
 height = input("키를 입력해주세요 cm로 기입: ")
 gender = input("성별을 입력해주세요 : ")
-std_weight = std_weight(int(height), gender)
+std_weight = std_weight(int(height), gender)  #std_weight(int(height)/100, gender) 
 
-
+#std_weight = round(std_weight(int(height)/100, gender),2)
 
 print("키 {0}cm의 {1}의 표준 체중은 {2:.2f}kg".format(height,gender,std_weight))
+
+
+
+Quiz) 당신의 회사에서는 매주 1회 작성해야 하는 보고서가 있습니다. 보고서는 항상 아래와 같은 형태로 출력되어야 합니다. 
+
+-X 주차 주간보고 - 
+부서 : 
+이름 : 
+업무 요약 : 
+
+1주차부터 50주차까지의 보고서 파일을 만드는 프로그램을 작성하시오. 
+
+조건 : 파일명은 '1주차.txt .... 이런식으로 만드세요 '
+
+
+for count in range (1,6):
+    filename = str(count)+"주차.txt"
+    with open(filename,"w",encoding="utf-8") as report_file:   #    with open(str(i)+"주차.txt","w",encoding="utf-8") as report_file:
+        report_file.write("- {0} 주차 주간보고 -\n".format(count)) 
+        report_file.write("부서 : \n이름 : \n업무 요약 : \n")
+
+'''
