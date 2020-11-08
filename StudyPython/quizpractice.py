@@ -185,4 +185,124 @@ for count in range (1,6):
         report_file.write("- {0} 주차 주간보고 -\n".format(count)) 
         report_file.write("부서 : \n이름 : \n업무 요약 : \n")
 
+
+Quiz) 주어진 코드를 활용하여 부동산 프로그램을 작성하시오. 
+
+(출력 예제)
+총 3대의 매물이 있습니다. 
+강남 아파트 매매 10억 2010년 
+마포 오피스텔 전세 5얼 2007년 
+송파 빌라 월세 500/50 2000년
+
+[코드]
+
+
+class House:
+    def __init__(self, location, house_type, deal_type, price, completion_year):
+        self.location = location
+        self.house_type = house_type
+        self.deal_type = deal_type
+        self.price = price
+        self.completion_year = completion_year
+
+    #매물 정보 표시
+    def show_detail(self):
+        print(self.location, self.house_type, self.deal_type, self.deal_type, self.completion_year)
+
+
+h1 = House("강남","아파트","매매","10억","2010년")
+h2 = House("마포","오피스텔","전세","5억","2007년")
+h3 = House("송파","빌라","월세","500/50","2000년")
+
+house_list = []
+house_list.append(h1)
+house_list.append(h2)
+house_list.append(h3)
+
+print ("총 {0}대의 매물이 있습니다.".format(len(house_list)))
+for house in house_list:
+    house.show_detail()
+
+
+Quiz) 동네에 항상 대기 손님이 있는 맛있는 치킨집이 있습니다. 
+대기 손님의 치킨 요리 시간을 줄이고자 자동 주문 시스템을 제작하였습니다. 
+시스템 코드를 확인하고 적절한 예외처리 구문을 넣으시오. 
+
+조건1: 1보다 작거나 숫자가 아닌 입력값이 들어올 때는 ValueError 로 처리 
+    출력 메세지 : "잘못된 값을 입력하였습니다"
+조건2 : 대기 손님이 주문할 수 있는 총 치킨량은 10마리로 한정
+    치킨 소진 시 사용자 정의 에러 [soldouterror]를 발생시키고 프로그램을 종료
+    출력 메세지 : "재고가 소진 되어 더이상 주문을 받지 않습니다."
+
+[코드]
+
+
+
+class SoldOutError(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+    
+    def __str__(self):
+        return self.msg
+
+
+chicken = 10
+waiting = 1 # 홀 안에는 현재 만석, 대기 번호 1부터 시작
+
+while(True):
+    try:
+        print("[남은 치킨 : {0}]".format(chicken))
+        order = int(input("치킨 몇마리 주문하시겠습니까? :"))
+    
+        
+        if order > chicken:
+            print("재료가 부족합니다.")
+        elif order <=0:
+            raise ValueError
+        else:
+            print("[대기번호 {0}] {1} 마리 주문이 완료되었습니다".format(waiting, order))
+            waiting += 1
+            chicken -= order
+
+        if chicken ==0 :
+            raise SoldOutError("재고가 소진되어 더 이상 주문을 받지 않습니다.")
+
+    except ValueError:
+        print("잘못된 값을 입력하였습니다.")
+    except SoldOutError as err:
+        print(err)
+        break
+
 '''
+class SoldOutError(Exception):
+    pass
+
+
+chicken = 10
+waiting = 1 # 홀 안에는 현재 만석, 대기 번호 1부터 시작
+
+while(True):
+    try:
+        print("[남은 치킨 : {0}]".format(chicken))
+        order = int(input("치킨 몇마리 주문하시겠습니까? :"))
+    
+        
+        if order > chicken:
+            print("재료가 부족합니다.")
+        elif order <=0:
+            raise ValueError
+        else:
+            print("[대기번호 {0}] {1} 마리 주문이 완료되었습니다".format(waiting, order))
+            waiting += 1
+            chicken -= order
+
+        if chicken ==0 :
+            raise SoldOutError
+
+    except ValueError:
+        print("잘못된 값을 입력하였습니다.")
+    except SoldOutError:
+        print("재고가 소진되어 더 이상 주문을 받지 않습니다.")
+        break
+
+
